@@ -6,7 +6,6 @@ import {
   Grid,
   Paper,
   Avatar,
-  Button,
   Card,
   IconButton,
   useTheme,
@@ -20,7 +19,6 @@ import {
   People,
   Public,
   EmojiEvents,
-  ArrowForward,
   LinkedIn,
   Twitter,
   Instagram,
@@ -56,8 +54,6 @@ const AnimatedCounter = ({ end, duration = 2 }) => {
 
 const About = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
   const { mood } = useContext(MoodContext);
 
@@ -87,22 +83,19 @@ const About = () => {
     {
       name: "Sarah Chen",
       role: "CEO & Founder",
-      image:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400",
+      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400",
       bio: "Former hotel executive with 15+ years experience in global luxury hospitality management.",
     },
     {
       name: "James Wilson",
       role: "Head of Operations",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400",
       bio: "Operations specialist scaling high-growth hospitality businesses across three continents.",
     },
     {
       name: "Maria Garcia",
       role: "Experience Curator",
-      image:
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400",
+      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400",
       bio: "Travel journalist turned experience designer, focused on hyper-local cultural immersion.",
     },
   ];
@@ -173,10 +166,7 @@ const About = () => {
               sx={{
                 fontSize: { xs: "2.8rem", md: "5rem" },
                 mb: 2,
-                background: `linear-gradient(90deg, #fff 40%, ${alpha(
-                  accentColor,
-                  0.5,
-                )} 100%)`,
+                background: `linear-gradient(90deg, #fff 40%, ${alpha(accentColor, 0.5)} 100%)`,
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
@@ -220,11 +210,7 @@ const About = () => {
 
       {/* Stats Section */}
       <Container maxWidth="lg" sx={{ mt: -8, position: "relative", zIndex: 3 }}>
-        <Grid
-          container
-          spacing={3}
-          sx={{ display: "flex", justifyContent: "center" }}
-        >
+        <Grid container spacing={3} sx={{ display: "flex", justifyContent: "center" }}>
           {stats.map((stat, idx) => (
             <Grid item xs={6} md={3} key={idx}>
               <Paper
@@ -243,14 +229,8 @@ const About = () => {
                   },
                 }}
               >
-                <Box sx={{ color: accentColor, fontSize: "2.8rem", mb: 1.5 }}>
-                  {stat.icon}
-                </Box>
-                <Typography
-                  variant="h4"
-                  fontWeight="900"
-                  sx={{ color: themeColor }}
-                >
+                <Box sx={{ color: accentColor, fontSize: "2.8rem", mb: 1.5 }}>{stat.icon}</Box>
+                <Typography variant="h4" fontWeight="900" sx={{ color: themeColor }}>
                   <AnimatedCounter end={stat.count} />
                   {stat.suffix}
                 </Typography>
@@ -330,11 +310,7 @@ const About = () => {
                   <Typography variant="h4" color={accentColor} fontWeight="900">
                     {item.year}
                   </Typography>
-                  <Typography
-                    variant="h6"
-                    fontWeight="bold"
-                    sx={{ mt: 1, color: themeColor }}
-                  >
+                  <Typography variant="h6" fontWeight="bold" sx={{ mt: 1, color: themeColor }}>
                     {item.title}
                   </Typography>
                   <Typography
@@ -362,14 +338,7 @@ const About = () => {
           </Typography>
           <Grid container spacing={4} alignItems="stretch">
             {teamMembers.map((member, index) => (
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={4}
-                key={index}
-                sx={{ display: "flex" }}
-              >
+              <Grid item xs={12} sm={6} md={4} key={index} sx={{ display: "flex" }}>
                 <Card
                   sx={{
                     display: "flex",
@@ -435,23 +404,21 @@ const About = () => {
                       borderTop: `1px solid ${alpha(accentColor, 0.05)}`,
                     }}
                   >
-                    {[<LinkedIn />, <Twitter />, <Instagram />].map(
-                      (icon, i) => (
-                        <IconButton
-                          key={i}
-                          size="small"
-                          sx={{
-                            color: alpha(themeColor, 0.6),
-                            "&:hover": {
-                              color: accentColor,
-                              bgcolor: alpha(accentColor, 0.1),
-                            },
-                          }}
-                        >
-                          {icon}
-                        </IconButton>
-                      ),
-                    )}
+                    {[<LinkedIn />, <Twitter />, <Instagram />].map((icon, i) => (
+                      <IconButton
+                        key={i}
+                        size="small"
+                        sx={{
+                          color: alpha(themeColor, 0.6),
+                          "&:hover": {
+                            color: accentColor,
+                            bgcolor: alpha(accentColor, 0.1),
+                          },
+                        }}
+                      >
+                        {icon}
+                      </IconButton>
+                    ))}
                   </Stack>
                 </Card>
               </Grid>

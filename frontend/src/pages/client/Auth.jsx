@@ -28,32 +28,6 @@ const Auth = ({ onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
 
-  useEffect(() => {
-    // 1. Pehle location.state check karein (jo Navbar se aa raha hai)
-    const modeFromNavbar = location.state?.mode;
-
-    // 2. Phir actual URL path check karein
-    const path = location.pathname;
-
-    if (modeFromNavbar === "signup" || path === "/signup") {
-      setIsLogin(false);
-    } else {
-      setIsLogin(true);
-    }
-
-    // Form reset karein jab bhi mode badle
-    formik.resetForm();
-  }, [location.state, location.pathname]);
-
-  const moodColor =
-    {
-      nature: "#2e7d32",
-      urban: "#EF4444",
-      ocean: "#00bcd4",
-      romantic: "#d81b60",
-      royal: "#ffab00",
-    }[mood] || "#1976d2";
-
   // --- FORMIK & YUP CONFIG ---
   const formik = useFormik({
     initialValues: { name: "", email: "", password: "" },
@@ -135,6 +109,30 @@ const Auth = ({ onLogin }) => {
       }
     },
   });
+
+  const { resetForm } = formik;
+
+  useEffect(() => {
+    const modeFromNavbar = location.state?.mode;
+    const path = location.pathname;
+
+    if (modeFromNavbar === "signup" || path === "/signup") {
+      setIsLogin(false);
+    } else {
+      setIsLogin(true);
+    }
+
+    resetForm();
+  }, [location.pathname, location.state, resetForm]);
+  
+  const moodColor =
+    {
+      nature: "#2e7d32",
+      urban: "#EF4444",
+      ocean: "#00bcd4",
+      romantic: "#d81b60",
+      royal: "#ffab00",
+    }[mood] || "#1976d2";
 
   // Toggle Function
   const handleToggle = () => {

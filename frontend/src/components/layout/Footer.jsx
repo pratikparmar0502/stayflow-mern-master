@@ -25,7 +25,7 @@ import {
 import toast from "react-hot-toast";
 
 const Footer = () => {
-  const { mood, setMood } = useContext(MoodContext);
+  const { mood } = useContext(MoodContext);
 
   const getMoodColor = (currentMood) => {
     switch (currentMood) {
@@ -124,9 +124,7 @@ const Footer = () => {
             left: 0,
             right: 0,
             height: "1px",
-            background: `linear-gradient(90deg, transparent, ${getMoodColor(
-              mood,
-            )}, transparent)`,
+            background: `linear-gradient(90deg, transparent, ${getMoodColor(mood)}, transparent)`,
           },
           "&::after": {
             content: '""',
@@ -135,9 +133,7 @@ const Footer = () => {
             left: 0,
             right: 0,
             height: "1px",
-            background: `linear-gradient(90deg, transparent, ${getMoodColor(
-              mood,
-            )}50, transparent)`,
+            background: `linear-gradient(90deg, transparent, ${getMoodColor(mood)}50, transparent)`,
           },
         }}
       >
@@ -150,12 +146,8 @@ const Footer = () => {
             right: 0,
             bottom: 0,
             background: `
-        radial-gradient(circle at 15% 20%, ${getMoodColor(
-          mood,
-        )}10 0%, transparent 40%),
-        radial-gradient(circle at 85% 80%, ${getMoodColor(
-          mood,
-        )}08 0%, transparent 40%),
+        radial-gradient(circle at 15% 20%, ${getMoodColor(mood)}10 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, ${getMoodColor(mood)}08 0%, transparent 40%),
         radial-gradient(circle at 50% 50%, transparent 0%, #0a0a0a 70%)
       `,
             pointerEvents: "none",
@@ -172,9 +164,7 @@ const Footer = () => {
               width: i * 100,
               height: i * 100,
               borderRadius: "50%",
-              background: `radial-gradient(circle, ${getMoodColor(
-                mood,
-              )}05 0%, transparent 70%)`,
+              background: `radial-gradient(circle, ${getMoodColor(mood)}05 0%, transparent 70%)`,
               top: `${20 * i}%`,
               left: `${10 * i}%`,
               filter: "blur(40px)",
@@ -191,11 +181,7 @@ const Footer = () => {
         ))}
 
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-          <Grid
-            container
-            spacing={{ xs: 6, md: 8 }}
-            justifyContent="space-between"
-          >
+          <Grid container spacing={{ xs: 6, md: 8 }} justifyContent="space-between">
             {/* Brand Section */}
             <Grid item xs={12} md={4}>
               <Box sx={{ mb: 5 }}>
@@ -207,9 +193,7 @@ const Footer = () => {
                       fontWeight: "900",
                       fontFamily: "'Playfair Display', serif",
                       letterSpacing: "-1px",
-                      background: `linear-gradient(45deg, ${getMoodColor(
-                        mood,
-                      )}, #ffffff)`,
+                      background: `linear-gradient(45deg, ${getMoodColor(mood)}, #ffffff)`,
                       backgroundClip: "text",
                       WebkitBackgroundClip: "text",
                       color: "transparent",
@@ -229,17 +213,13 @@ const Footer = () => {
                     maxWidth: "380px",
                   }}
                 >
-                  We don't just book stays, we craft experiences. Each property
-                  is handpicked to match your mood, ensuring memories that last
-                  a lifetime.
+                  We don't just book stays, we craft experiences. Each property is handpicked to
+                  match your mood, ensuring memories that last a lifetime.
                 </Typography>
 
                 {/* Newsletter Subscription */}
                 <Box sx={{ mb: 5 }}>
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#cccccc", mb: 2, fontWeight: "500" }}
-                  >
+                  <Typography variant="body2" sx={{ color: "#cccccc", mb: 2, fontWeight: "500" }}>
                     Join our exclusive travel community
                   </Typography>
                   <Box sx={{ display: "flex", gap: 1 }}>
@@ -273,10 +253,7 @@ const Footer = () => {
                       variant="contained"
                       size="small"
                       onClick={() => {
-                        showToast(
-                          "🎉 Welcome to our travel community!",
-                          "success",
-                        );
+                        showToast("🎉 Welcome to our travel community!", "success");
                       }}
                       sx={{
                         bgcolor: getMoodColor(mood),
@@ -322,10 +299,7 @@ const Footer = () => {
                         href="#"
                         onClick={(e) => {
                           e.preventDefault();
-                          showToast(
-                            `🚀 ${social.name} integration coming soon!`,
-                            "info",
-                          );
+                          showToast(`🚀 ${social.name} integration coming soon!`, "info");
                         }}
                         sx={{
                           border: "1px solid rgba(255,255,255,0.1)",
@@ -404,13 +378,7 @@ const Footer = () => {
               },
               {
                 title: "COMPANY",
-                items: [
-                  "About Us",
-                  "Careers",
-                  "Press",
-                  "Sustainability",
-                  "Investors",
-                ],
+                items: ["About Us", "Careers", "Press", "Sustainability", "Investors"],
               },
             ].map((section, idx) => (
               <Grid item xs={6} md={2.5} key={section.title}>
@@ -432,9 +400,7 @@ const Footer = () => {
                       left: 0,
                       width: "40px",
                       height: "2px",
-                      background: `linear-gradient(90deg, ${getMoodColor(
-                        mood,
-                      )}, transparent)`,
+                      background: `linear-gradient(90deg, ${getMoodColor(mood)}, transparent)`,
                       transition: "all 0.3s ease",
                     },
                     "&:hover::after": {
@@ -532,9 +498,7 @@ const Footer = () => {
               © 2026 StayFlow. All rights reserved.
               <Box
                 component="span"
-                onClick={() =>
-                  showToast("❤️ Thank you for your love!", "success")
-                }
+                onClick={() => showToast("❤️ Thank you for your love!", "success")}
                 sx={{
                   color: getMoodColor(mood),
                   transition: "all 0.3s ease",
@@ -551,51 +515,46 @@ const Footer = () => {
             </Typography>
 
             <Stack direction="row" spacing={3} alignItems="center">
-              {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(
-                (item) => (
-                  <Box key={item} sx={{ position: "relative" }}>
-                    <Typography
-                      component="a"
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        showToast(
-                          `📄 ${item} page is under development. Coming soon!`,
-                          "warning",
-                        );
-                      }}
-                      variant="body2"
-                      sx={{
-                        color: "#b0b0b0",
-                        cursor: "pointer",
+              {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item) => (
+                <Box key={item} sx={{ position: "relative" }}>
+                  <Typography
+                    component="a"
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      showToast(`📄 ${item} page is under development. Coming soon!`, "warning");
+                    }}
+                    variant="body2"
+                    sx={{
+                      color: "#b0b0b0",
+                      cursor: "pointer",
+                      textDecoration: "none",
+                      transition: "all 0.3s ease",
+                      position: "relative",
+                      "&:hover": {
+                        color: getMoodColor(mood),
+                        transform: "translateY(-2px)",
                         textDecoration: "none",
-                        transition: "all 0.3s ease",
-                        position: "relative",
-                        "&:hover": {
-                          color: getMoodColor(mood),
-                          transform: "translateY(-2px)",
-                          textDecoration: "none",
-                          "&::after": {
-                            width: "100%",
-                          },
-                        },
                         "&::after": {
-                          content: '""',
-                          position: "absolute",
-                          bottom: -2,
-                          left: 0,
-                          width: "0%",
-                          height: "1px",
-                          background: getMoodColor(mood),
-                          transition: "width 0.3s ease",
+                          width: "100%",
                         },
-                      }}
-                    >
-                      {item}
-                    </Typography>
-                  </Box>
-                ),
-              )}
+                      },
+                      "&::after": {
+                        content: '""',
+                        position: "absolute",
+                        bottom: -2,
+                        left: 0,
+                        width: "0%",
+                        height: "1px",
+                        background: getMoodColor(mood),
+                        transition: "width 0.3s ease",
+                      },
+                    }}
+                  >
+                    {item}
+                  </Typography>
+                </Box>
+              ))}
             </Stack>
           </Box>
         </Container>
