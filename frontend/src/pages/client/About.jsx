@@ -8,8 +8,6 @@ import {
   Avatar,
   Card,
   IconButton,
-  useTheme,
-  useMediaQuery,
   alpha,
   Stack,
 } from "@mui/material";
@@ -53,7 +51,6 @@ const AnimatedCounter = ({ end, duration = 2 }) => {
 };
 
 const About = () => {
-  const theme = useTheme();
 
   const { mood } = useContext(MoodContext);
 
