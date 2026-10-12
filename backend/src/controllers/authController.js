@@ -55,6 +55,68 @@ const registerUser = async (req, res) => {
   }
 };
 
+
+const createFirstAdmin = async (req, res) => {
+  try {
+    // Read admin details from the request body
+    const { name, email, password, setupKey } = req.body;
+
+    // Require all fields
+    if (!name || !email || !password || !setupKey) {
+      return res.status(400).json({
+        success: false,
+        message: "Name, email, password and setup key are required",
+      });
+    }
+
+    // Verify a secret setup key stored in backend environment variables
+    if (!process.env.ADMIN_SETUP_KEY || setupKey !== process.env.ADMIN_SETUP_KEY) {
+      return res.status(403).json({
+        success: false,
+        message: "Invalid setup key",
+      });
+    }
+
+    // Do not allow duplicate email addresses
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      return res.status(409).json({
+        success: false,
+        message: "A user with this email already exists",
+      });
+    }
+
+    // Hash the password before saving it
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create the administrator
+    const admin = await User.create({
+      name,
+      email,
+      password: hashedPassword,
+      role: "admin",
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: "Admin created successfully",
+      user: {
+        id: admin._id,
+        name: admin.name,
+        email: admin.email,
+        role: admin.role,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Admin creation failed",
+    });
+  }
+};
+
+
 // Login user
 const loginUser = async (req, res) => {
   try {
@@ -123,4 +185,5 @@ const loginUser = async (req, res) => {
 module.exports = {
   registerUser,
   loginUser,
+  createFirstAdmin,
 };
